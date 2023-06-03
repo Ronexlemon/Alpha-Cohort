@@ -18,12 +18,17 @@ contract("Counter", () => {
     num = await CounterInstance.getNumber();
     assert.equal(num, 1);
   });
+  it("should multiplication number", async () => {
+    await CounterInstance.multiplication(4);
+    num = await CounterInstance.getNumber();
+    assert.equal(num, 4);
+  });
 
   it("should decrement number by 1", async () => {
     
 
     await CounterInstance.decrement();
     num = await CounterInstance.getNumber();
-    assert.equal(num, 0);
+    assert.equal(num, 3);
   });
 });

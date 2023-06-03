@@ -41,10 +41,12 @@
  * https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/
  */
 
-// require('dotenv').config();
+ require('dotenv').config({path:".env"});
 // const { MNEMONIC, PROJECT_ID } = process.env;
+const key = process.env.KEY;
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+ const HDWalletProvider = require('@truffle/hdwallet-provider');
+ const PrivateKeyProvider = require("truffle-privatekey-provider");
 
 module.exports = {
   /**
@@ -69,11 +71,9 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
-    ganache: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 7545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
-     },
+   
+     alfajores: {  provider: function() { 
+         return new HDWalletProvider(key, "https://alfajores-forno.celo-testnet.org")  },  network_id: 44787,  gas: 20000000}
     //
     // An additional network, but with some advanced options…
     // advanced: {
